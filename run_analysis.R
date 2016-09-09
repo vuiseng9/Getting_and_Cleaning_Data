@@ -71,4 +71,5 @@ df_mean <-
 
 # adding "Mean_of_" prefix to the column header
 names(df_mean)[3:88] <- paste0("Mean_of_",names(df_mean)[3:88])
+
 write.table(df_mean, file = "df_mean.txt",row.names = FALSE)

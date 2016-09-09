@@ -18,13 +18,13 @@ Data Manipulation Instructions:
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 
-## Description of processing in run_analysis.README
+## Description of processing in run_analysis.R
 
 1. To begin with, the required library dplyr is imported.
 2. X_train.txt and X_test.txt are imported respectively as data frames and are concatenated to form a feature data frame 'X'.
 3. To rename the columns of X, features.txt is imported as data frame and its last column is used as naming vector to X header. To improve readability, the "()" in naming vector is replaced with "".
 4. subject_train.txt and subject_test.txt are imported and concatenated to form a data frame 'subject'. 
-5. Its only column is renamed as subject. Subsequently, X is appended with the subject columns.
+5. Its only column is renamed as subject. Subsequently, X is appended with the subject column.
 6. y_train.txt and y_test.txt are imported respectively as data frames and are concatenated to form a label data frame 'y'. Its only column is named activity_id.
 7. To include a descriptive activity label, activity_labels.txt is imported and is left-joined to the data frame y.
 8. Columns in y are then appended to X to complete a data frame df.
