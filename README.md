@@ -23,13 +23,15 @@ Data Manipulation Instructions:
 1. To begin with, the required library dplyr is imported.
 2. X_train.txt and X_test.txt are imported respectively as data frames and are concatenated to form a feature data frame 'X'.
 3. To rename the columns of X, features.txt is imported as data frame and its last column is used as naming vector to X header. To improve readability, the "()" in naming vector is replaced with "".
-4. y_train.txt and y_test.txt are imported respectively as data frames and are concatenated to form a label data frame 'y'. Its only column is named activity_id.
-5. To include a descriptive activity label, activity_labels.txt is imported and is left-joined to the data frame y.
-6. Columns in y are then appended to X to complete a data frame df.
-7. To create a data frame 'subset_df' with columms of interest (mean & std), df is subsetted through columns id obtained from case-insensitive grep function.
-8. The activity column is then appended to subset_df.
-9. The final data frame df_mean is created through dplyr, subset_df is group by activity and each column is summarised by mean function.
-
+4. subject_train.txt and subject_test.txt are imported and concatenated to form a data frame 'subject'. 
+5. Its only column is renamed as subject. Subsequently, X is appended with the subject columns.
+6. y_train.txt and y_test.txt are imported respectively as data frames and are concatenated to form a label data frame 'y'. Its only column is named activity_id.
+7. To include a descriptive activity label, activity_labels.txt is imported and is left-joined to the data frame y.
+8. Columns in y are then appended to X to complete a data frame df.
+9. To create a data frame 'subset_df' with columms of interest (mean & std), df is subsetted through columns id obtained from case-insensitive grep function.
+10. The activity column is then appended to subset_df.
+11. The final data frame df_mean is created through dplyr, subset_df is group by activity and subject and each column is summarised by mean function.
+12. Feature column names are then prefixed with 'Mean_of'
 
 ## How to reproduce the final data set 'mean_df.txt'
 1. Make a main folder containing the run_analysis.R and the downloaded,unzipped input data (link above)

@@ -20,6 +20,19 @@ features <- read.table('UCI HAR Dataset/features.txt',header=FALSE)
 # getting rid of '()"
 names(X) <- gsub("\\(\\)","",as.character(features[[-1]]))
 
+# Import train subject
+subject_train <- read.table('UCI HAR Dataset/train/subject_train.txt',header=FALSE)
+
+# Import test subject
+subject_test <- read.table('UCI HAR Dataset/test/subject_test.txt',header=FALSE)
+
+# Concatenate train and test subject
+subject <- rbind(subject_train,subject_test)
+names(subject) <- "subject"
+
+# Appending subject to X
+X$subject <- subject$subject
+
 # Import train label
 y_train <- read.table('UCI HAR Dataset/train/y_train.txt',header = FALSE)
 
@@ -48,9 +61,14 @@ df <- cbind(X,y)
 # Subsetting to only mean and std columns
 subset_df <- df[grep("mean|std",names(df),ignore.case = TRUE)]
 subset_df$activity <- df$activity
+subset_df$subject <- df$subject
 
 # dataset of feature mean per activity
 df_mean <- 
   subset_df %>% 
-  group_by(activity) %>% 
+  group_by(activity,subject) %>% 
   summarise_each(funs(mean))
+
+# adding "Mean_of_" prefix to the column header
+names(df_mean)[3:88] <- paste0("Mean_of_",names(df_mean)[3:88])
+write.table(df_mean, file = "df_mean.txt",row.names = FALSE)
